@@ -6,7 +6,7 @@ describe Attack do
 
   describe '.run' do
     it 'damages the player' do
-      expect(player).to receive(:receive_damage)
+      expect(player).to receive(:damage)
       object.run(player)
     end
   end
