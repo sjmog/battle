@@ -10,4 +10,8 @@ class Player
   def damage(amount)
     @hit_points -= amount
   end
+
+  def computer?
+    false
+  end
 end
