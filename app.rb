@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require './helpers/attack_helper'
 require './lib/game'
 require './lib/player'
 require './lib/computer_player'
@@ -6,6 +7,7 @@ require './lib/attack'
 
 class Battle < Sinatra::Base
   enable :sessions
+  helpers AttackHelper
 
   get '/' do
     erb :index
@@ -52,15 +54,4 @@ class Battle < Sinatra::Base
 
   # start the server if ruby file executed directly
   run! if app_file == $0
-
-  private
-
-  def attack_and_redirect(game)
-    Attack.run(game.opponent_of(game.current_turn))
-    if game.game_over?
-      redirect '/game-over'
-    else
-      redirect '/attack'
-    end
-  end
 end
